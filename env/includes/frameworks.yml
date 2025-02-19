@@ -69,7 +69,7 @@ frameworks:
     location:
       #type: dev
       #path: "S:/Projects/ShotgunConfig/tk-swc-framework-shotgunutils"
-      #type: git_branch
+      type: git_branch
       branch: swc_main_ai
       path: https://github.com/StudioWildcard/tk-swc-framework-shotgunutils
       version: f3c9a41
