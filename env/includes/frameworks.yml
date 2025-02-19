@@ -69,10 +69,10 @@ frameworks:
     location:
       #type: dev
       #path: "S:/Projects/ShotgunConfig/tk-swc-framework-shotgunutils"
-      type: git_branch
+      #type: git_branch
       branch: swc_main_ai
       path: https://github.com/StudioWildcard/tk-swc-framework-shotgunutils
-      version: ca1878e7fcb6a824c44027a6e2014ac66182e930
+      version: f3c9a41
   # widget v0 - QT Widget Framework for Tank Apps (qtwidgets fw predecessor)
   tk-framework-widget_v0.2.x:
     location:
