@@ -21,19 +21,19 @@ frameworks:
     location:
       type: app_store
       name: tk-framework-adobe
-      version: v1.2.5
+      version: v1.2.9
   # adminui - provides GUIs for administrative commands
   tk-framework-adminui_v0.x.x:
     location:
       type: app_store
       name: tk-framework-adminui
-      version: v0.7.7
+      version: v0.8.0
   # desktopserver - provides a server to run local commands.
   tk-framework-desktopserver_v1.x.x:
     location:
       type: app_store
       name: tk-framework-desktopserver
-      version: v1.7.5
+      version: v1.8.2
   # qtwidgets - collection of Toolkit related QT Widgets
   tk-framework-qtwidgets_v2.x.x:
     location:
@@ -48,8 +48,7 @@ frameworks:
       type: git_branch
       branch: swc_main_aei
       path: https://github.com/StudioWildcard/tk-framework-qtwidgets
-      version: 095c289
-
+      version: 095c2899ecf2c90b167fa33d4ab862a4eeb9d737
   # shotgunutils v4 - Shotgun Related Utilities
   tk-framework-shotgunutils_v4.x.x:
     location:
@@ -64,7 +63,7 @@ frameworks:
       #path: "S:/Projects/ShotgunConfig/tk-framework-shotgunutils"
       type: app_store
       name: tk-framework-shotgunutils
-      version: v5.10.1
+      version: v5.10.2
   tk-swc-framework-shotgunutils_v5.x.x:
     location:
       #type: dev
@@ -72,7 +71,7 @@ frameworks:
       type: git_branch
       branch: swc_main_ai
       path: https://github.com/StudioWildcard/tk-swc-framework-shotgunutils
-      version: f3c9a41
+      version: f3c9a416a82e6f695d71d95d2edb4a1a47edc545
   # widget v0 - QT Widget Framework for Tank Apps (qtwidgets fw predecessor)
   tk-framework-widget_v0.2.x:
     location:
@@ -91,7 +90,7 @@ frameworks:
     location:
       type: app_store
       name: tk-framework-desktopclient
-      version: v0.3.4
+      version: v0.4.0
   # lmv - provides LMV conversion tools
   tk-framework-lmv_v1.x.x:
     location:
@@ -125,9 +124,9 @@ frameworks:
       #path: https://gitlab.com/nexodus/consulting/swc/tk-framework-perforce.git
       #version: b51cd173972d7172bafa4bb20797b429a5acc87a
       type: git_branch
-      branch: swc_beta_rb_ai
-      path: https://github.com/StudioWildcard/tk-framework-perforce
-      version: 4a10981
+      branch: main
+      path: https://github.com/StudioWildcard/tk-framework-perforce-swc
+      version: 8ae14ba987aa130386e24bcc95c3ec5d0a6152da
 
   # # Unreal Launcher
   # tk-framework-unreal-launcher_v0.x.x:

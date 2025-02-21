@@ -57,13 +57,13 @@ engines.tk-houdini.location:
 engines.tk-maya.location:
   type: app_store
   name: tk-maya
-  version: v0.13.2
+  version: v0.13.3
 
 # Photoshop
 engines.tk-photoshopcc.location:
   type: app_store
   name: tk-photoshopcc
-  version: v1.11.4
+  version: v1.11.5
 
 # Shell
 engines.tk-shell.location:

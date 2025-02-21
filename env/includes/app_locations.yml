@@ -23,19 +23,19 @@ includes:
 apps.tk-multi-about.location:
   type: app_store
   name: tk-multi-about
-  version: v0.5.1
+  version: v0.5.2
 
 # demo
 apps.tk-multi-demo.location:
   type: app_store
   name: tk-multi-demo
-  version: v1.5.1
+  version: v1.5.2
 
 # launchapp
 apps.tk-multi-launchapp.location:
   type: app_store
   name: tk-multi-launchapp
-  version: v0.13.2
+  version: v0.13.3
 
 # loader2
 apps.tk-multi-loader2.location:
@@ -61,7 +61,7 @@ apps.tk-swc-perforce-sync.location:
   type: git_branch
   branch: swc_main_ai
   path: https://github.com/StudioWildcard/tk-swc-perforce-sync
-  version: ce2f4aa
+  version: ce2f4aa0781db14128eb8c39e44cca19d4cf7335
 
 # publish2
 apps.tk-multi-publish2.location:
@@ -85,13 +85,13 @@ apps.tk-multi-screeningroom.location:
 apps.tk-multi-pythonconsole.location:
   type: app_store
   name: tk-multi-pythonconsole
-  version: v1.4.2
+  version: v1.4.3
 
 # reviewsubmission
 apps.tk-multi-reviewsubmission.location:
   type: app_store
   name: tk-multi-reviewsubmission
-  version: v1.3.0
+  version: v1.3.1
 
 # shotgun panel
 apps.tk-multi-shotgunpanel.location:
@@ -202,7 +202,7 @@ apps.tk-multi-perforce.location:
   type: git_branch
   branch: tester
   path: https://github.com/StudioWildcard/tk-multi-perforce
-  version: d360159
+  version: d36015967fb4ee9faa79d84856a6da3e865e9c48
 
 ################################################################################
 # reference all of the common frameworks
@@ -229,7 +229,7 @@ apps.tk-copyfromplaylist.location:
   type: git_branch
   branch: swc-main
   path: https://github.com/StudioWildcard/tk-copyfromplaylist
-  version: 819dcf1
+  version: 819dcf1008274668cb16dfb4e1867601dddbc4d6
 
 apps.tk-unreal-launcher.location:
   #type: dev
@@ -237,7 +237,7 @@ apps.tk-unreal-launcher.location:
   type: git_branch
   branch: swc_main_aei
   path: https://github.com/StudioWildcard/tk-unreal-launcher
-  version: 3926356
+  version: 392635610f1a431ac629e708986d9a68d6afbc60
 
 
 # Unreal
