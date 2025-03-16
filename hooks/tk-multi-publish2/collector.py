@@ -104,7 +104,7 @@ class BasicSceneCollector(HookBaseClass):
                     "item_priority": 10,
                 },
                 "Houdini Scene": {
-                    "extensions": ["hip", "hipnc"],
+                    "extensions": ["hip", "hipnc", "hiplc"],
                     "icon": self._get_icon_path("houdini.png"),
                     "item_type": "file.houdini",
                     "item_priority": 10,

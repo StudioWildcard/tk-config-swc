@@ -301,6 +301,18 @@ keys:
         default: ma
         alias: extension
 
+    #
+    # Houdini
+    #
+    houdini_extension:
+        type: str
+        choices:
+            hip: Houdini file (.hip)
+            hipnc: Houdini file (.hipnc)
+            hiplc: Houdini file (.hiplc)
+        default: hip
+        alias: extension
+
     # These are used by the Loader in Unreal
     sg_asset_type_ue4:
         type: str
@@ -657,80 +669,80 @@ paths:
 
     # asset
     asset_houdini_workfile:
-        definition: '@asset_filename.hip'
+        definition: '@asset_filename.{houdini_extension}'
     asset_houdini_snapshot:
-        definition: '@asset_snapshot_filename.hip'
+        definition: '@asset_snapshot_filename.{houdini_extension}'
     asset_houdini_workfile_flat:
-        definition: '@asset_filename_flat.hip'
+        definition: '@asset_filename_flat.{houdini_extension}'
     asset_houdini_snapshot_flat:
-        definition: '@asset_snapshot_filename_flat.hip'        
+        definition: '@asset_snapshot_filename_flat.{houdini_extension}'
 
     # notype
     notype_houdini_workfile:
-        definition: '@notype_filename.hip'
+        definition: '@notype_filename.{houdini_extension}'
     notype_houdini_snapshot:
-        definition: '@notype_snapshot_filename.hip'  
+        definition: '@notype_snapshot_filename.{houdini_extension}'
 
     notype_child_houdini_workfile:
-        definition: '@notype_child_filename.hip'
+        definition: '@notype_child_filename.{houdini_extension}'
     notype_child_houdini_snapshot:
-        definition: '@notype_child_snapshot_filename.hip'              
+        definition: '@notype_child_snapshot_filename.{houdini_extension}'
 
     sequence_houdini_workfile:
-        definition: '@sequence_filename.hip'
+        definition: '@sequence_filename.{houdini_extension}'
     sequence_houdini_snapshot:
-        definition: '@sequence_snapshot_filename.hip'
+        definition: '@sequence_snapshot_filename.{houdini_extension}'
 
     sequence_task_houdini_workfile:
-        definition: '@sequence_task_filename.hip'
+        definition: '@sequence_task_filename.{houdini_extension}'
     sequence_task_houdini_snapshot:
-        definition: '@sequence_task_snapshot_filename.hip'
+        definition: '@sequence_task_snapshot_filename.{houdini_extension}'
 
     shot_houdini_workfile:
-        definition: '@shot_filename.hip'
+        definition: '@shot_filename.{houdini_extension}'
     shot_houdini_snapshot:
-        definition: '@shot_snapshot_filename.hip'
+        definition: '@shot_snapshot_filename.{houdini_extension}'
 
     shot_task_houdini_workfile:
-        definition: '@shot_task_filename.hip'
+        definition: '@shot_task_filename.{houdini_extension}'
     shot_task_houdini_snapshot:
-        definition: '@shot_task_snapshot_filename.hip'
+        definition: '@shot_task_snapshot_filename.{houdini_extension}'
 
     asset_child_houdini_workfile:
-        definition: '@asset_child_filename.hip'
+        definition: '@asset_child_filename.{houdini_extension}'
     asset_child_houdini_snapshot:
-        definition: '@asset_child_snapshot_filename.hip'
+        definition: '@asset_child_snapshot_filename.{houdini_extension}'
 
     anim_asset_houdini_workfile:
-        definition: '@anim_asset_filename.hip'
+        definition: '@anim_asset_filename.{houdini_extension}'
     anim_asset_houdini_snapshot:
-        definition: '@anim_asset_snapshot_filename.hip'        
+        definition: '@anim_asset_snapshot_filename.{houdini_extension}'
 
     asset_section_category_houdini_workfile:
-        definition: '@asset_section_category_filename.hip'
+        definition: '@asset_section_category_filename.{houdini_extension}'
     asset_section_category_houdini_snapshot:
-        definition: '@asset_section_category_snapshot_filename.hip'
+        definition: '@asset_section_category_snapshot_filename.{houdini_extension}'
     asset_section_houdini_workfile:
-        definition: '@asset_section_filename.hip'
+        definition: '@asset_section_filename.{houdini_extension}'
     asset_section_houdini_snapshot:
-        definition: '@asset_section_snapshot_filename.hip'
+        definition: '@asset_section_snapshot_filename.{houdini_extension}'
     asset_section_category_class_houdini_workfile:
-        definition: '@asset_section_category_class_filename.hip'
+        definition: '@asset_section_category_class_filename.{houdini_extension}'
     asset_section_category_class_houdini_snapshot:
-        definition: '@asset_section_category_class_snapshot_filename.hip'                
+        definition: '@asset_section_category_class_snapshot_filename.{houdini_extension}'
 
     pub_asset_houdini_workfile:
-        definition: '@pub_asset_filename.hip'
+        definition: '@pub_asset_filename.{houdini_extension}'
         root_name: 'primary'
     pub_asset_houdini_snapshot:
-        definition: '@pub_asset_snapshot_filename.hip'  
+        definition: '@pub_asset_snapshot_filename.{houdini_extension}'
         root_name: 'primary'
 
     prod_asset_houdini_workfile:
-        definition: '@prod_asset_filename.hip'
+        definition: '@prod_asset_filename.{houdini_extension}'
         root_name: 'primary'
     prod_asset_houdini_snapshot:
-        definition: '@prod_asset_snapshot_filename.hip'  
+        definition: '@prod_asset_snapshot_filename.{houdini_extension}'
         root_name: 'primary'
 
     #

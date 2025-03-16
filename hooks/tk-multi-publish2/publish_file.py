@@ -78,7 +78,7 @@ class PublishPlugin(HookBaseClass):
                     ["Alembic Cache", "abc"],
                     ["Audio File", "wav", "mp3"],
                     ["3dsmax Scene", "max"],
-                    ["Houdini Scene", "hip", "hipnc"],
+                    ["Houdini Scene", "hip", "hipnc", "hiplc"],
                     ["Maya Scene", "ma", "mb"],
                     ["Motion Builder FBX", "fbx"],
                     ["Photoshop Image", "psd", "psb"],
