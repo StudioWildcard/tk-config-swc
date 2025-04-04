@@ -1,6 +1,10 @@
 # Flow Production Tracking Toolkit configuration file. This file was automatically
 # created during the latest core update.
 location:
-  name: tk-core
-  type: app_store
-  version: v0.22.0
+  # name: tk-core
+  # type: app_store
+  # version: v0.22.0
+  type: git_branch
+  branch: swc_main
+  path: https://github.com/StudioWildcard/tk-core
+  version: 96ffe3c2
