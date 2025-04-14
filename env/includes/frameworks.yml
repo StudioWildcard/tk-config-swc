@@ -71,7 +71,7 @@ frameworks:
       type: git_branch
       branch: swc_main_ai
       path: https://github.com/StudioWildcard/tk-swc-framework-shotgunutils
-      version: e5d64dd
+      version: cbdb960
   # widget v0 - QT Widget Framework for Tank Apps (qtwidgets fw predecessor)
   tk-framework-widget_v0.2.x:
     location:
@@ -117,7 +117,7 @@ frameworks:
     location:
       # # Dev
       #type: dev
-      #path: "S:/Projects/ShotgunConfig/tk-framework-perforce"
+      #path: "S:/Projects/ShotgunConfig/tk-framework-perforce-swc"
       # Gitlab
       #type: git_branch
       #branch: swc_beta_rb_ai
@@ -126,7 +126,7 @@ frameworks:
       type: git_branch
       branch: main
       path: https://github.com/StudioWildcard/tk-framework-perforce-swc
-      version: 8ae14ba987aa130386e24bcc95c3ec5d0a6152da
+      version: d66eabf
 
   # # Unreal Launcher
   # tk-framework-unreal-launcher_v0.x.x:
