@@ -192,17 +192,50 @@ settings.tk-multi-publish2.houdini.shot:
   collector_settings:
       Work Template: shot_houdini_workfile
 
+
 # shot_step
 settings.tk-multi-publish2.houdini.shot_step:
   <<: *settings_publish_plugins_tk-multi-publish2_houdini
   collector_settings:
       Work Template: shot_task_houdini_workfile
+  publish_plugins:
+    - name: Publish to Flow Production Tracking
+      hook: "{self}/publish_file.py:{config}/tk-multi-publish2/publish_file.py"
+      settings: { }
+    - name: Upload for review
+      hook: "{self}/upload_version.py:{config}/tk-multi-publish2/upload_version.py"
+      settings: { }
+    - name: Begin file versioning
+      hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
+      settings: { }
+    - name: Publish to Flow Production Tracking #note changes below as well
+      hook: "{config}/tk-multi-publish2/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
+      settings:
+        Publish Template: houdini_shot_publish
+
 
 # asset_child_step
 settings.tk-multi-publish2.houdini.asset_child_step:
   <<: *settings_publish_plugins_tk-multi-publish2_houdini
   collector_settings:
       Work Template: asset_child_houdini_workfile
+  publish_plugins:
+    - name: Publish to Flow Production Tracking
+      hook: "{self}/publish_file.py:{config}/tk-multi-publish2/publish_file.py"
+      settings: { }
+    - name: Upload for review
+      hook: "{self}/upload_version.py:{config}/tk-multi-publish2/upload_version.py"
+      settings: { }
+    - name: Begin file versioning
+      hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
+      settings: { }
+    - name: Publish to Flow Production Tracking #note changes below as well
+      hook: "{config}/tk-multi-publish2/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
+      settings:
+        Publish Template: houdini_shot_publish
+
+
+
 
 # seq_asset_step
 settings.tk-multi-publish2.houdini.seq_asset_step:
