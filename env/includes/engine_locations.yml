@@ -30,10 +30,6 @@ engines.tk-desktop.location:
   # type: app_store
   # name: tk-desktop
   # version: v2.6.0
-  ### Github
-  #branch: swc_main_ai
-  #path: https://github.com/StudioWildcard/tk-desktop
-  #version: 4ab0a0eaac97c3d2cdc88cdb0ac016499783cf2f
   type: git_branch
   branch: swc_main_aei
   path: https://github.com/StudioWildcard/tk-desktop
