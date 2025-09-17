@@ -19,7 +19,7 @@
 engines.tk-3dsmax.location:
   type: app_store
   name: tk-3dsmax
-  version: v1.4.1
+  version: v1.4.5
 
 # Desktop
 engines.tk-desktop.location:
@@ -41,31 +41,31 @@ engines.tk-desktop.location:
 engines.tk-desktop2.location:
   type: app_store
   name: tk-desktop2
-  version: v1.6.0
+  version: v1.6.1
 
 # Houdini
 engines.tk-houdini.location:
   type: app_store
   name: tk-houdini
-  version: v1.9.3
+  version: v1.9.7
 
 # Maya
 engines.tk-maya.location:
   type: app_store
   name: tk-maya
-  version: v0.13.3
+  version: v0.13.7
 
 # Photoshop
 engines.tk-photoshopcc.location:
   type: app_store
   name: tk-photoshopcc
-  version: v1.11.5
+  version: v1.11.9
 
 # Shell
 engines.tk-shell.location:
   type: app_store
   name: tk-shell
-  version: v0.10.1
+  version: v0.10.2
 
 # Shotgun
 engines.tk-shotgun.location:

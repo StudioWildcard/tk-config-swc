@@ -35,7 +35,7 @@ apps.tk-multi-demo.location:
 apps.tk-multi-launchapp.location:
   type: app_store
   name: tk-multi-launchapp
-  version: v0.13.3
+  version: v0.13.5
 
 # loader2
 apps.tk-multi-loader2.location:
@@ -61,7 +61,7 @@ apps.tk-swc-perforce-sync.location:
   type: git_branch
   branch: swc_main_ai
   path: https://github.com/StudioWildcard/tk-swc-perforce-sync
-  version: 768cf15
+  version: 768cf154bb0b6fe83d0ebbc0e83142873d7aeeb4
 
 # publish2
 apps.tk-multi-publish2.location:
@@ -73,7 +73,7 @@ apps.tk-multi-publish2.location:
   type: git_branch
   branch: beta-ai
   path: https://github.com/StudioWildcard/tk-multi-publish2
-  version: 413e03e
+  version: 413e03ee3dbfd97542d555a78556ae8817141c3a
 
 # screeningroom
 apps.tk-multi-screeningroom.location:
