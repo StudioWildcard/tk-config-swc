@@ -56,16 +56,16 @@ apps.tk-multi-loader2.location:
   version: cc83e0ac195765418a5f3f529fd727a1f6f84cee
 
 apps.tk-swc-perforce-sync.location:
-  #type: dev
-  #path: S:\Projects\ShotgunConfig\tk-swc-perforce-sync
+  type: dev
+  path: S:\Projects\ShotgunConfig\tk-swc-perforce-sync
   #type: git_branch
   #branch: swc_main_ai
   #path: https://github.com/alaa-e-ibrahim/tk-swc-perforce-sync
   #version: 67aff26
-  type: git_branch
-  branch: swc_main_ai
-  path: https://github.com/StudioWildcard/tk-swc-perforce-sync
-  version: 768cf154bb0b6fe83d0ebbc0e83142873d7aeeb4
+  # type: git_branch
+  # branch: swc_main_ai
+  # path: https://github.com/StudioWildcard/tk-swc-perforce-sync
+  # version: 768cf154bb0b6fe83d0ebbc0e83142873d7aeeb4
 
 # publish2
 apps.tk-multi-publish2.location:
@@ -102,10 +102,12 @@ apps.tk-multi-shotgunpanel.location:
   #type: app_store
   #name: tk-multi-shotgunpanel
   #version: v1.8.4
-  type: git_branch
-  branch: swc_main_aei
-  path: https://github.com/StudioWildcard/tk-multi-shotgunpanel
-  version: c2c3e0730f27c19ef7704245a1055ade2ade927c
+  # type: git_branch
+  # branch: swc_main_aei
+  # path: https://github.com/StudioWildcard/tk-multi-shotgunpanel
+  # version: c2c3e0730f27c19ef7704245a1055ade2ade927c
+  type: dev
+  path: S:\Projects\ShotgunConfig\tk-multi-shotgunpanel
 
 # dev utils
 apps.tk-multi-devutils.location:
@@ -193,22 +195,12 @@ apps.tk-multi-workfiles2.location:
 
 # Perforce
 apps.tk-multi-perforce.location:
-  # ## Dev
-  #type: dev
-  #path: S:/Projects/ShotgunConfig/tk-multi-perforce
+  type: dev
+  path: S:/Projects/ShotgunConfig/tk-multi-perforce
   #type: git_branch
-  #branch: swc_beta_rb_ai
-  #path: https://gitlab.com/nexodus/consulting/swc/tk-multi-perforce.git
-  #version: 1ede939
-  type: git_branch
-  branch: tester
-  path: https://github.com/StudioWildcard/tk-multi-perforce
-  version: d36015967fb4ee9faa79d84856a6da3e865e9c48
-
-  #type: git_branch
-  #branch: swc_main_ai_v2
-  #path: https://gitlab.com/nexodus/consulting/swc/tk-multi-perforce.git
-  #version:
+  #branch: tester
+  #path: https://github.com/StudioWildcard/tk-multi-perforce
+  #version: d36015967fb4ee9faa79d84856a6da3e865e9c48
 
 
 
