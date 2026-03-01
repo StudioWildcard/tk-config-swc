@@ -22,14 +22,10 @@ entity_browser_settings: &entity_browser_settings
     filters:
     - [task_assignees, is, '{context.user}']
     - [project, is, '{context.project}']
-    hierarchy: [project, entity, step, content]      
-  - caption: Assets
-    type: Hierarchy
-    root: "{context.project}"
-    publish_filters: [] 
+    hierarchy: [entity, step, content]      
   - caption: Content
     entity_type: Asset
-    hierarchy: [project, sg_asset_library, sg_asset_type, sg_asset_category, code]
+    hierarchy: [sg_asset_library, sg_asset_type, sg_asset_category, code]
     filters:
       - [sg_asset_parent, is, [ null ]]
       - [project, is, '{context.project}']    
@@ -38,7 +34,7 @@ entity_browser_settings: &entity_browser_settings
       - [task.Task.step.Step.short_name, is_not, 'Animations']
   - caption: Children
     entity_type: Asset
-    hierarchy: [project, sg_asset_parent.Asset.sg_asset_library, sg_asset_parent.Asset.sg_asset_type, sg_asset_parent.Asset.sg_asset_category, sg_asset_parent.Asset.code, sg_asset_category, code]
+    hierarchy: [sg_asset_parent.Asset.sg_asset_library, sg_asset_parent.Asset.sg_asset_type, sg_asset_parent.Asset.sg_asset_category, sg_asset_parent.Asset.code, sg_asset_category, code]
     filters:
       - [project, is, '{context.project}']  
       - [sg_asset_parent, is_not, [ null ]]
@@ -47,14 +43,14 @@ entity_browser_settings: &entity_browser_settings
       - [task.Task.step.Step.short_name, is_not, 'Animations']        
   - caption: Animations
     entity_type: Asset
-    hierarchy: [project, sg_asset_parent.Asset.sg_asset_library, sg_asset_parent.Asset.sg_asset_type, sg_asset_parent.Asset.sg_asset_category, sg_asset_parent.Asset.code, sg_asset_category, code]
+    hierarchy: [sg_asset_parent.Asset.sg_asset_library, sg_asset_parent.Asset.sg_asset_type, sg_asset_parent.Asset.sg_asset_category, sg_asset_parent.Asset.code, sg_asset_category, code]
     filters:
       - [project, is, '{context.project}']  
       - [sg_asset_parent, is_not, [ null ]]
       - [sg_asset_type, is, ["Animations"]]               
   - caption: Environment
     entity_type: Task
-    hierarchy: [project, entity.CustomEntity01.sg_asset_library, entity.CustomEntity01.sg_asset_type, entity.CustomEntity01.sg_biome, entity.CustomEntity01.sg_asset_category, entity, step, content]
+    hierarchy: [entity.CustomEntity01.sg_asset_library, entity.CustomEntity01.sg_asset_type, entity.CustomEntity01.sg_biome, entity.CustomEntity01.sg_asset_category, entity, step, content]
     filters:
       - [project, is, '{context.project}']    
       - [entity, type_is, 'CustomEntity01']           
@@ -65,13 +61,13 @@ entity_browser_settings: &entity_browser_settings
     hierarchy: [entity, content]   
   - caption: Cinematics
     entity_type: Task
-    hierarchy: [project, entity, step, content]
+    hierarchy: [entity, step, content]
     filters:
       - [project, is, '{context.project}']   
       - { "filter_operator": "any","filters": [[entity, type_is, 'Sequence'],[entity, type_is, 'Shot']] }
   - caption: Cinematic Assets
     entity_type: Task
-    hierarchy: [project, entity.Asset.sg_asset_library, entity.Asset.sg_asset_type, entity.Asset.sg_asset_category, entity, step, content]
+    hierarchy: [ entity.Asset.sg_asset_library, entity.Asset.sg_asset_type, entity.Asset.sg_asset_category, entity, step, content]
     filters:
       - [project, is, '{context.project}']   
       - { "filter_operator": "any","filters": [[entity.Asset.sequences, is_not, [null]]] }
