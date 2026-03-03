@@ -73,7 +73,7 @@ frameworks:
       #type: git_branch
       #branch: swc_main_ai
       #path: https://github.com/StudioWildcard/tk-swc-framework-shotgunutils
-      #version: 2a71292a1f9048df7e1addbbf20b941065be3922
+      #version: 66230fbc18ef4fe3780cc33a8465ec666b29cb1e
 
   # widget v0 - QT Widget Framework for Tank Apps (qtwidgets fw predecessor)
   tk-framework-widget_v0.2.x:
