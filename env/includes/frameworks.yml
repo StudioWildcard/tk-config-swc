@@ -37,15 +37,15 @@ frameworks:
   # qtwidgets - collection of Toolkit related QT Widgets
   tk-framework-qtwidgets_v2.x.x:
     location:
-      type: dev
-      path: S:/Projects/ShotgunConfig/tk-framework-qtwidgets
+      #type: dev
+      #path: S:/Projects/ShotgunConfig/tk-framework-qtwidgets
       #type: app_store
       #name: tk-framework-qtwidgets
       #version: v2.10.2
-      #type: git_branch
-      #branch: swc_main_aei
-      #path: https://github.com/StudioWildcard/tk-framework-qtwidgets
-      #version: 2ef271f29fc9b75bb0bea57e3bf9cd29188d7e81
+      type: git_branch
+      branch: swc_main_aei
+      path: https://github.com/StudioWildcard/tk-framework-qtwidgets
+      version: 2ef271f29fc9b75bb0bea57e3bf9cd29188d7e81
 
   # shotgunutils v4 - Shotgun Related Utilities
   tk-framework-shotgunutils_v4.x.x:
@@ -68,12 +68,12 @@ frameworks:
       #version:
   tk-swc-framework-shotgunutils_v5.x.x:
     location:
-      type: dev
-      path: S:/Projects/ShotgunConfig/tk-swc-framework-shotgunutils
-      #type: git_branch
-      #branch: swc_main_ai
-      #path: https://github.com/StudioWildcard/tk-swc-framework-shotgunutils
-      #version: 66230fbc18ef4fe3780cc33a8465ec666b29cb1e
+      #type: dev
+      #path: S:/Projects/ShotgunConfig/tk-swc-framework-shotgunutils
+      type: git_branch
+      branch: swc_main_ai
+      path: https://github.com/StudioWildcard/tk-swc-framework-shotgunutils
+      version: 66230fbc18ef4fe3780cc33a8465ec666b29cb1e
 
   # widget v0 - QT Widget Framework for Tank Apps (qtwidgets fw predecessor)
   tk-framework-widget_v0.2.x:
@@ -118,18 +118,18 @@ frameworks:
     hook_get_perforce_user: '{config}/tk-framework-perforce/get_perforce_user.py'
     hook_get_shotgun_user: '{config}/tk-framework-perforce/get_shotgun_user.py'
     location:
-      type: dev
-      path: S:/Projects/ShotgunConfig/tk-framework-perforce-swc
-      #type: git_branch
-      #branch: main
-      #path: https://github.com/StudioWildcard/tk-framework-perforce-swc
-      #version: 57820e29accf522abfb89ce4005b06aa6e3cb6be
+      #type: dev
+      #path: S:/Projects/ShotgunConfig/tk-framework-perforce-swc
+      type: git_branch
+      branch: main
+      path: https://github.com/StudioWildcard/tk-framework-perforce-swc
+      version: 57820e29accf522abfb89ce4005b06aa6e3cb6be
 
   # SWC - Custom utilities
   tk-framework-swc_v1.x.x:
     location:
-      type: dev
-      path: S:/Projects/ShotgunConfig/tk-framework-swc
-      #type: git
-      #path: https://github.com/StudioWildcard/tk-framework-swc
-      #version: v1.4.5
+      #type: dev
+      #path: S:/Projects/ShotgunConfig/tk-framework-swc
+      type: git
+      path: https://github.com/StudioWildcard/tk-framework-swc
+      version: v1.4.5
