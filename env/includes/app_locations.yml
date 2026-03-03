@@ -35,7 +35,7 @@ apps.tk-multi-demo.location:
 apps.tk-multi-launchapp.location:
   type: app_store
   name: tk-multi-launchapp
-  version: v0.13.5
+  version: v0.14.1
 
 # loader2
 apps.tk-multi-loader2.location:
@@ -53,15 +53,15 @@ apps.tk-multi-loader2.location:
   type: git_branch
   branch: swc_main_ai
   path: https://github.com/studiowildcard/tk-multi-loader2.git
-  version: cc83e0ac195765418a5f3f529fd727a1f6f84cee
+  version: c924a3017d216aff6c2b79bb59cfa86700a0e88d
 
 apps.tk-swc-perforce-sync.location:
-  #type: dev
-  #path: S:\Projects\ShotgunConfig\tk-swc-perforce-sync
-  type: git_branch
-  branch: swc_main_ai
-  path: https://github.com/StudioWildcard/tk-swc-perforce-sync
-  version: d34bf18b6dbe2b57900f45d095e50decc693a502
+  type: dev
+  path: S:\Projects\ShotgunConfig\tk-swc-perforce-sync
+  #type: git_branch
+  #branch: swc_main_ai
+  #path: https://github.com/StudioWildcard/tk-swc-perforce-sync
+  #version: d34bf18b6dbe2b57900f45d095e50decc693a502
 
 # publish2
 apps.tk-multi-publish2.location:
@@ -73,7 +73,7 @@ apps.tk-multi-publish2.location:
   type: git_branch
   branch: beta-ai
   path: https://github.com/StudioWildcard/tk-multi-publish2
-  version: 413e03ee3dbfd97542d555a78556ae8817141c3a
+  version: 4cf4587440357ddc04784c3d66f55a12f51c973e
 
 # screeningroom
 apps.tk-multi-screeningroom.location:
@@ -98,10 +98,10 @@ apps.tk-multi-shotgunpanel.location:
   #type: app_store
   #name: tk-multi-shotgunpanel
   #version: v1.8.4
-  # type: git_branch
-  # branch: swc_main_aei
-  # path: https://github.com/StudioWildcard/tk-multi-shotgunpanel
-  # version: c2c3e0730f27c19ef7704245a1055ade2ade927c
+  #type: git_branch
+  #branch: swc_main_aei
+  #path: https://github.com/StudioWildcard/tk-multi-shotgunpanel
+  #version: 07de8b8e2dfc0f06ca7eb569b60e99647be96862
   type: dev
   path: S:\Projects\ShotgunConfig\tk-multi-shotgunpanel
 
@@ -109,7 +109,7 @@ apps.tk-multi-shotgunpanel.location:
 apps.tk-multi-devutils.location:
   type: app_store
   name: tk-multi-devutils
-  version: v1.3.1
+  version: v1.3.2
 
 # ---- Houdini apps
 
@@ -159,7 +159,7 @@ apps.tk-shotgun-folders.location:
   type: git_branch
   branch: swc_main_flow
   path: https://github.com/studiowildcard/tk-shotgun-folders.git
-  version: e79db5f432e08d8d0bc6db1b5c89b03b62c0fba3
+  version: 1431e9a9f307e536d495803aee6084bba5c0035f
   # ### Dev
   # type: dev
   # path: S:/Projects/ShotgunConfig/tk-shotgun-folders
@@ -179,7 +179,7 @@ apps.tk-multi-workfiles2.location:
   type: git_branch
   branch: swc_main_flow
   path: https://github.com/studiowildcard/tk-multi-workfiles2.git
-  version: 2898ad4ebadb2c524ed08ccdcb29644f59726903
+  version: e85792ed6e1efdb052a405d47453fb33e1202d8b
   #type: git_branch
   #branch: beta-ai
   #path: https://github.com/studiowildcard/tk-multi-workfiles2.git
@@ -260,7 +260,7 @@ engines.tk-unreal.location:
   type: git_branch
   branch: swc_main_aei
   path: https://github.com/StudioWildcard/tk-unreal
-  version: 2358068714b1bc8a970e244640ac12b0dc9a8249
+  version: f9a4fcb55dcd8f014cb3d1ba40fd988eda8bc251
 
 
 

@@ -4,4 +4,4 @@ location:
   type: git_branch
   branch: swc_main
   path: https://github.com/StudioWildcard/tk-core
-  version: 96ffe3c2
+  version: 9cac78a28cd49321097f347c6373978cf951af7a

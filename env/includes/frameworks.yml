@@ -27,25 +27,25 @@ frameworks:
     location:
       type: app_store
       name: tk-framework-adminui
-      version: v0.8.0
+      version: v0.8.2
   # desktopserver - provides a server to run local commands.
   tk-framework-desktopserver_v1.x.x:
     location:
       type: app_store
       name: tk-framework-desktopserver
-      version: v1.8.3
+      version: v1.8.5
   # qtwidgets - collection of Toolkit related QT Widgets
   tk-framework-qtwidgets_v2.x.x:
     location:
       type: dev
-      path: "S:/Projects/ShotgunConfig/tk-framework-qtwidgets"
+      path: S:/Projects/ShotgunConfig/tk-framework-qtwidgets
       #type: app_store
       #name: tk-framework-qtwidgets
       #version: v2.10.2
       #type: git_branch
       #branch: swc_main_aei
       #path: https://github.com/StudioWildcard/tk-framework-qtwidgets
-      #version: 095c2899ecf2c90b167fa33d4ab862a4eeb9d737
+      #version: 2ef271f29fc9b75bb0bea57e3bf9cd29188d7e81
 
   # shotgunutils v4 - Shotgun Related Utilities
   tk-framework-shotgunutils_v4.x.x:
@@ -61,19 +61,19 @@ frameworks:
       #path: "S:/Projects/ShotgunConfig/tk-framework-shotgunutils"
       type: app_store
       name: tk-framework-shotgunutils
-      version: v5.10.3
+      version: v5.11.1
       #type: git_branch
       #branch: main
       #path: https://github.com/alaa-e-ibrahim/tk-framework-shotgunutils
       #version:
   tk-swc-framework-shotgunutils_v5.x.x:
     location:
-      #type: dev
-      #path: "S:/Projects/ShotgunConfig/tk-swc-framework-shotgunutils"
-      type: git_branch
-      branch: swc_main_ai
-      path: https://github.com/StudioWildcard/tk-swc-framework-shotgunutils
-      version: 2a71292a1f9048df7e1addbbf20b941065be3922
+      type: dev
+      path: S:/Projects/ShotgunConfig/tk-swc-framework-shotgunutils
+      #type: git_branch
+      #branch: swc_main_ai
+      #path: https://github.com/StudioWildcard/tk-swc-framework-shotgunutils
+      #version: 2a71292a1f9048df7e1addbbf20b941065be3922
 
   # widget v0 - QT Widget Framework for Tank Apps (qtwidgets fw predecessor)
   tk-framework-widget_v0.2.x:
@@ -93,7 +93,7 @@ frameworks:
     location:
       type: app_store
       name: tk-framework-desktopclient
-      version: v0.4.0
+      version: v0.4.3
   # lmv - provides LMV conversion tools
   tk-framework-lmv_v1.x.x:
     location:
@@ -119,17 +119,17 @@ frameworks:
     hook_get_shotgun_user: '{config}/tk-framework-perforce/get_shotgun_user.py'
     location:
       type: dev
-      path: "S:/Projects/ShotgunConfig/tk-framework-perforce-swc"
+      path: S:/Projects/ShotgunConfig/tk-framework-perforce-swc
       #type: git_branch
       #branch: main
       #path: https://github.com/StudioWildcard/tk-framework-perforce-swc
-      #version: b94b5fe84f8845cabbd3b90551d821bd7a47fdc9
+      #version: 57820e29accf522abfb89ce4005b06aa6e3cb6be
 
   # SWC - Custom utilities
   tk-framework-swc_v1.x.x:
     location:
       type: dev
-      path: "S:/Projects/ShotgunConfig/tk-framework-swc"
+      path: S:/Projects/ShotgunConfig/tk-framework-swc
       #type: git
       #path: https://github.com/StudioWildcard/tk-framework-swc
       #version: v1.4.5
