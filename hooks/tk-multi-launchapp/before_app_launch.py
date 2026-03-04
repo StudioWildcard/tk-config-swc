@@ -17,7 +17,6 @@ to set environment variables or run scripts as part of the app initialization.
 
 import os
 import tempfile
-import tank
 import sgtk
 
 HookBaseClass = sgtk.get_hook_baseclass()
@@ -27,7 +26,7 @@ XBMLANGPATH = %PERFORCE_TOOL_PATH%\ICONS;
 MAYA_SHELF_PATH  = %PERFORCE_TOOL_PATH%\SHELVES;
 PYTHONPATH = %PERFORCE_TOOL_PATH%;%PERFORCE_TOOL_PATH%\PYTHON;"""
 
-class BeforeAppLaunch(tank.Hook):
+class BeforeAppLaunch(HookBaseClass):
     """
     Hook to set up the system prior to app launch.
     """
@@ -63,7 +62,23 @@ class BeforeAppLaunch(tank.Hook):
 
         if app_tools_path:
             tools_path = os.path.abspath(os.path.join(self.sgtk.project_path, os.pardir, app_tools_path))
-            sg_core_python_path = os.path.join(os.path.dirname(os.path.dirname(self.disk_location)), "resources", "python", "core")     
+            sg_core_python_path = os.path.join(os.path.dirname(os.path.dirname(self.disk_location)), "resources", "python", "core")
+
+            # Sync tools from Perforce before setting up environment
+            try:
+                p4_fw = self.load_framework("tk-framework-perforce_v0.x.x")
+                p4 = p4_fw.connection.connect()
+                sync_path = tools_path + "/..."
+                result = p4_fw.sync.sync_path_with_dialog(
+                    p4, sync_path,
+                    title="Syncing Tools",
+                    message="Syncing pipeline tools from Perforce...",
+                )
+                self.logger.debug("Synced %d items from %s", len(result), tools_path)
+                if p4.connected():
+                    p4.disconnect()
+            except Exception as e:
+                self.logger.warning("Failed to sync tools from Perforce: %s", e)
 
             sgtk.util.append_path_to_env_var("PYTHONPATH", tools_path)
             sgtk.util.append_path_to_env_var("PYTHONPATH", sg_core_python_path)
