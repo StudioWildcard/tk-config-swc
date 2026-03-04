@@ -59,68 +59,69 @@ class SceneOperation(HookBaseClass):
                                                  state, otherwise False
                                 all others     - None
         """
+
+        if operation == "open" or operation == "save":
+            return self._do_checkout(file_path, operation)
+
+        elif operation == "save_as":
+            # a file exists in that path, lets make sure the user wants to overwrite it
+            if os.path.exists(file_path):
+                return self._do_checkout(file_path, operation)
+            else:
+                return True
+
+        # no Perforce operations were found to act upon
         return True
+
+    def _do_checkout(self, file_path, operation):
         p4_fw = self.load_framework(TK_FRAMEWORK_PERFORCE_NAME)
-        p4_fw.util = p4_fw.import_module("connection")
+        p4_fw.connection = p4_fw.import_module("connection")
         p4 = p4_fw.connection.connect()
         p4_fw.util = p4_fw.import_module("util")
         p4_icon = os.path.join(self.disk_location, os.pardir, os.pardir, "icons", "perforce.png")
 
+        text = ""
+        informativeText = "Do you want to check it out"
+
         if operation == "open":
-            # check if the file is checked out
-            file_details = None
-            try:
-                file_details = p4_fw.util.get_client_file_details(p4, file_path, fields=["action"], flags=[])[file_path]
-                log.debug("file_details: {}".format(file_details))
-            except TankError as e:
-                self.parent.log_warning(e)
-            # check if the file is checked out
-            if not file_details.get("action") == "edit":
-                # if its not checked out, ask before opening
-                msgBox = QtGui.QMessageBox()
-                msgBox.setText("This file is not checked out.")
-                msgBox.setInformativeText("Do you want to check it out before opening in order to make changes?")
-                msgBox.setIconPixmap(QtGui.QPixmap(p4_icon).scaledToWidth(48, QtCore.Qt.SmoothTransformation))
-                msgBox.setStandardButtons(QtGui.QMessageBox.Yes | QtGui.QMessageBox.No)
-                msgBox.setDefaultButton(QtGui.QMessageBox.Yes)
-                msgBox.setEscapeButton(QtGui.QMessageBox.No)
-
-                ret = msgBox.exec_()
-
-                if ret == QtGui.QMessageBox.Yes:
-                    # check out the file
-                    try:
-                        p4_fw.util.open_file_for_edit(p4, file_path, add_if_new=False)
-                    except TankError as e:
-                        self.parent.log_warning(e)
-            # operation completed successfully
-            return True
-
+            text = "This file is not checked out by you."
+            informativeText = f"{informativeText} before opening to prevent others from making changes?"
+        elif operation == "save":
+            text = "This file is not checked out by you."
+            informativeText = f"{informativeText} to save your changes? Click No to abort the save operation."           
         elif operation == "save_as":
+            text = "This file exists and is not checked out by you."
+            informativeText = f"{informativeText} to save your changes? Click No to abort the save operation."
 
-            # a file exists in that path, lets make sure the user wants to overwrite it
-            if os.path.exists(file_path):
-                msgBox = QtGui.QMessageBox()
-                msgBox.setText("This file already exists.")
-                msgBox.setInformativeText("Are you sure you want to overwite this file?")
-                msgBox.setIcon(QtGui.QMessageBox.Warning)
-                msgBox.setStandardButtons(QtGui.QMessageBox.Yes | QtGui.QMessageBox.No)
-                msgBox.setDefaultButton(QtGui.QMessageBox.Yes)
-                msgBox.setEscapeButton(QtGui.QMessageBox.No)
+        file_details = None
+        try:
+            file_details = p4_fw.util.get_client_file_details(p4, file_path, fields=["action"], flags=[])[file_path]
+            log.debug("file_details: {}".format(file_details))
+        except TankError as e:
+            self.parent.log_warning(e)
 
-                ret = msgBox.exec_()
+        # check if the file is checked out
+        if not file_details.get("action") == "edit":
+            # if its not checked out, ask before opening
+            msgBox = QtGui.QMessageBox()
+            msgBox.setText(text)
+            msgBox.setInformativeText(informativeText)
+            msgBox.setIconPixmap(QtGui.QPixmap(p4_icon).scaledToWidth(48, QtCore.Qt.SmoothTransformation))
+            msgBox.setStandardButtons(QtGui.QMessageBox.Yes | QtGui.QMessageBox.No)
+            msgBox.setDefaultButton(QtGui.QMessageBox.Yes)
+            msgBox.setEscapeButton(QtGui.QMessageBox.No)
 
-                if ret == QtGui.QMessageBox.Yes:
-                    # check out the file
-                    try:
-                        p4_fw.util.open_file_for_edit(p4, file_path, add_if_new=False)
-                    except TankError as e:
-                        self.parent.log_warning(e)
-                    # operation completed successfully
-                    return True
-                else:
-                    # operation didn't complete
+            ret = msgBox.exec_()
+
+            if ret == QtGui.QMessageBox.Yes:
+                # check out the file
+                try:
+                    p4_fw.util.open_file_for_edit(p4, file_path, add_if_new=False)
+                except TankError as e:
+                    self.parent.log_warning(e)
                     return False
-
-        # no operations were found to act upon
+            else:
+                if operation != "open":
+                    return False
+        # operation completed successfully
         return True

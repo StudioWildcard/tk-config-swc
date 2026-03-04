@@ -13,7 +13,7 @@ import sgtk
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
-class AddPublishPlugin(HookBaseClass):
+class DeletePublishPlugin(HookBaseClass):
     """
     """
     @property
@@ -79,6 +79,6 @@ class AddPublishPlugin(HookBaseClass):
                 # )
 
                 # return the accepted info
-                return super(AddPublishPlugin, self).accept(settings, item)
+                return super(DeletePublishPlugin, self).accept(settings, item)
         
         return {"accepted": False}          

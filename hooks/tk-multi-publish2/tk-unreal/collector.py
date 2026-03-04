@@ -100,7 +100,7 @@ class BasicSceneCollector(HookBaseClass):
                     "item_priority": 10,
                 },
                 "Houdini Scene": {
-                    "extensions": ["hip", "hipnc"],
+                    "extensions": ["hip", "hipnc", "hiplc"],
                     "icon": self._get_icon_path("houdini.png"),
                     "item_type": "file.houdini",
                     "item_priority": 10,
@@ -417,7 +417,7 @@ class BasicSceneCollector(HookBaseClass):
             file_item.thumbnail_explicit = True
         # if the supplied path is a SpeedTree SPM file, extract the thumbnail.
         elif item_type.startswith("file.speedtree") and extension.startswith("spm"):
-            swc = self.load_framework("tk-framework-swc_v0.x.x")
+            swc = self.load_framework("tk-framework-swc_v1.x.x")
             spm_utils = swc.import_module("SPM_Utils")
             temp_path = os.path.expandvars(r'%APPDATA%\Shotgun\Temp')
             os.makedirs(temp_path, exist_ok=True)

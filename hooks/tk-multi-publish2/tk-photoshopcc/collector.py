@@ -15,7 +15,7 @@ import tempfile
 from tank_vendor import six
 
 HookBaseClass = sgtk.get_hook_baseclass()
-TK_FRAMEWORK_SWC_NAME = "tk-framework-swc_v0.x.x"
+TK_FRAMEWORK_SWC_NAME = "tk-framework-swc_v1.x.x"
 
 class PhotoshopCCSceneCollector(HookBaseClass):
     """
@@ -108,11 +108,9 @@ class PhotoshopCCSceneCollector(HookBaseClass):
             path = _document_path(document)
             if path:
                 # Try to get the context more specifically from the path on disk
-                try:
-                    context = self.swc_fw.find_task_context(path)
-                except(AttributeError):
-                    self.swc_fw = self.load_framework(TK_FRAMEWORK_SWC_NAME)
-                    context = self.swc_fw.find_task_context(path)
+                swc_fw = self.load_framework(TK_FRAMEWORK_SWC_NAME)
+                swc_context_utils = swc_fw.import_module("Context_Utils")
+                context = swc_context_utils.find_task_context(path)
 
             # If we found a context, process
             if context:

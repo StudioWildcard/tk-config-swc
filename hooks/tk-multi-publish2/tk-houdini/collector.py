@@ -115,36 +115,37 @@ class HoudiniSessionCollector(HookBaseClass):
         if path:
             file_info = publisher.util.get_file_path_components(path)
             display_name = file_info["filename"]
-        else:
-            display_name = "Current Houdini Session"
+            session_info = {
+                "item_type":"houdini.session",
+                "type_display":"Houdini File",
+                "display_name":display_name
+                }         
 
-        # create the session item for the publish hierarchy
-        session_item = parent_item.create_item(
-            "houdini.session", "Houdini File", display_name
-        )
+            session_item = super(HoudiniSessionCollector, self).process_file(settings, parent_item, path, custom_info=session_info)
 
-        # get the icon path to display for this item
-        icon_path = os.path.join(self.disk_location, os.pardir, "icons", "houdini.png")
-        session_item.set_icon_from_path(icon_path)
+            # discover the project root which helps in discovery of other
+            # publishable items
+            # project_root = cmds.workspace(q=True, rootDirectory=True)
+            # session_item.properties["project_root"] = project_root
 
-        # if a work template is defined, add it to the item properties so that
-        # it can be used by attached publish plugins
-        work_template_setting = settings.get("Work Template")
-        if work_template_setting:
-            work_template = publisher.engine.get_template_by_name(
-                work_template_setting.value
-            )
+            # if a work template is defined, add it to the item properties so that
+            # it can be used by attached publish plugins
+            work_template_setting = settings.get("Work Template")
+            if work_template_setting:
+                work_template = publisher.engine.get_template_by_name(
+                    work_template_setting.value
+                )
 
-            # store the template on the item for use by publish plugins. we
-            # can't evaluate the fields here because there's no guarantee the
-            # current session path won't change once the item has been created.
-            # the attached publish plugins will need to resolve the fields at
-            # execution time.
-            session_item.properties["work_template"] = work_template
-            self.logger.debug("Work template defined for Houdini collection.")
+                # store the template on the item for use by publish plugins. we
+                # can't evaluate the fields here because there's no guarantee the
+                # current session path won't change once the item has been created.
+                # the attached publish plugins will need to resolve the fields at
+                # execution time.
+                session_item.properties["work_template"] = work_template
+                self.logger.debug("Work template defined for Houdini collection.")
 
-        self.logger.info("Collected current Houdini session")
-        return session_item
+            self.logger.info("Collected current Houdini session")
+            return session_item
 
     def collect_node_outputs(self, parent_item):
         """

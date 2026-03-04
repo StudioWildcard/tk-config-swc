@@ -21,7 +21,6 @@ from sgtk.platform.qt import QtGui
 HookClass = sgtk.get_hook_baseclass()
 TK_FRAMEWORK_PERFORCE_NAME = "tk-framework-perforce_v0.x.x"
 
-
 class FilterWorkFiles(HookClass):
     """
     Hook that can be used to filter the list of work files found by the app for the current

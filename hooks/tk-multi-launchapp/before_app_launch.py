@@ -59,10 +59,14 @@ class BeforeAppLaunch(HookBaseClass):
         # Append to PYTHONPATH
     
         app_tools_path = software_entity["sg_windows_tools_path"]
-
+        project_tools_path = self.parent.shotgun.find_one("Project", [["id", "is", self.parent.context.project.get("id")]], ["sg_tool_root"]).get("sg_tool_root")
         if app_tools_path:
-            tools_path = os.path.abspath(os.path.join(self.sgtk.project_path, os.pardir, app_tools_path))
-            sg_core_python_path = os.path.join(os.path.dirname(os.path.dirname(self.disk_location)), "resources", "python", "core")
+            if project_tools_path:
+                tool_root = project_tools_path
+            else:
+                tool_root = os.path.join(self.sgtk.project_path, os.pardir)
+            tools_path = os.path.abspath(os.path.join(tool_root, app_tools_path))
+            sg_core_python_path = os.path.join(os.path.dirname(os.path.dirname(self.disk_location)), "resources", "python", "core")     
 
             # Sync tools from Perforce before setting up environment
             try:

@@ -17,7 +17,8 @@ from sgtk.util.filesystem import copy_file, ensure_folder_exists
 from sgtk.platform.qt import QtGui, QtCore
 
 HookBaseClass = sgtk.get_hook_baseclass()
-TK_FRAMEWORK_SWC_NAME = "tk-framework-swc_v0.x.x"
+TK_FRAMEWORK_SWC_NAME = "tk-framework-swc_v1.x.x"
+TK_FRAMEWORK_PERFORCE_NAME = "tk-framework-perforce_v0.x.x"
 
 class PublishPlugin(HookBaseClass):
     """
@@ -77,7 +78,7 @@ class PublishPlugin(HookBaseClass):
                     ["Alembic Cache", "abc"],
                     ["Audio File", "wav", "mp3"],
                     ["3dsmax Scene", "max"],
-                    ["Houdini Scene", "hip", "hipnc"],
+                    ["Houdini Scene", "hip", "hipnc", "hiplc"],
                     ["Maya Scene", "ma", "mb"],
                     ["Motion Builder FBX", "fbx"],
                     ["Photoshop Image", "psd", "psb"],
@@ -92,6 +93,7 @@ class PublishPlugin(HookBaseClass):
                     ["Settings File", "pkl", "json"],                
                     ["Substance Designer", "sbs"],
                     ["Substance Painter", "spp"],
+                    ["Python Script", "py"],
                 ],
                 "description": (
                     "List of file types to include. Each entry in the list "
@@ -144,7 +146,7 @@ class PublishPlugin(HookBaseClass):
         accept() method. Strings can contain glob patters such as *, for example
         ["maya.*", "file.maya"]
         """
-        return ["file.*"]
+        return ["file.*", "script.*"]
 
     def accept(self, settings, item):
         """
@@ -230,13 +232,11 @@ class PublishPlugin(HookBaseClass):
                 self.logger.error(f"This file path contains an illegal character, '{char}':")
                 self.logger.error(" %s" % (path,))                  
                 return False
+        # Try to get the context more specifically from the path on disk
+        swc_fw = self.load_framework(TK_FRAMEWORK_SWC_NAME)
+        swc_context_utils = swc_fw.import_module("Context_Utils")
+        target_context = swc_context_utils.find_task_context(path)            
 
-        try:
-            target_context = self.swc_fw.find_task_context(path)
-        except(AttributeError):
-            self.swc_fw = self.load_framework(TK_FRAMEWORK_SWC_NAME)
-            target_context = self.swc_fw.find_task_context(path)     
-        
         # ---- determine the information required to validate
         if not item.context.entity and not target_context.entity:
             self.logger.error("This file is not under a known Asset folder:")
@@ -287,6 +287,33 @@ class PublishPlugin(HookBaseClass):
 
         publish_path = self.get_publish_path(settings, item)
         publish_name = self.get_publish_name(settings, item)
+
+        if item.properties.get('p4_data'):
+            self.logger.debug("Starting Perforce validation phase.")
+            self.publisher = self.parent
+
+            # Make the p4 connection
+            self.p4_fw = self.load_framework(TK_FRAMEWORK_PERFORCE_NAME)
+            self.logger.debug("Perforce framework loaded.")
+
+            p4 = self.p4_fw.connection.connect(progress=True)
+            self.logger.debug("Perforce connection made.")
+
+            path = self.ensure_path(item)
+
+            self.logger.info("Ensuring file is checked out...")
+            try:
+                self.p4_fw.util.open_file_for_edit(p4, path, add_if_new=True, dry_run=True)
+            except Exception as e:
+                self.logger.error("Perforce Error", extra={
+                    "action_show_more_info": {
+                        "label": "Error Details",
+                        "tooltip": pprint.pformat(str(e)),
+                        "text": "<pre>%s</pre>" %pprint.pformat(str(e)),
+                        }
+                    }
+                )
+                return False
 
         self.logger.info("A Publish will be created in ShotGrid and linked to:")
         self.logger.info("  %s" % (path,))

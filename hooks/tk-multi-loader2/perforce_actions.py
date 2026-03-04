@@ -67,11 +67,12 @@ class PerforceActions(HookBaseClass):
         :returns List of dictionaries, each with keys name, params, caption and description
         """
         app = self.parent
+        """
         app.log_debug(
             "Generate actions called for UI element %s. "
             "Actions: %s. Publish Data: %s" % (ui_area, actions, sg_publish_data)
         )
-
+        """
         action_instances = HookBaseClass.generate_actions(self, sg_publish_data, actions, ui_area)
 
         # For the sake of easy test, we'll reuse Maya publish types.
@@ -114,7 +115,7 @@ class PerforceActions(HookBaseClass):
         :param list actions: Action dictionaries.
         """
         app = self.parent
-        app.log_info("Executing action '%s' on the selection")
+        app.log_info(f"Executing action '{actions}' on the selection")
         # Helps to visually scope selections
         # Execute each action.
         perforce_entities = []

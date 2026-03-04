@@ -67,11 +67,12 @@ class PerforceActions(HookBaseClass):
         :returns List of dictionaries, each with keys name, params, caption and description
         """
         app = self.parent
+        """
         app.log_debug(
             "Generate actions called for UI element %s. "
             "Actions: %s. Publish Data: %s" % (ui_area, actions, sg_publish_data)
         )
-
+        """
         action_instances = HookBaseClass.generate_actions(self, sg_publish_data, actions, ui_area)
 
         # For the sake of easy test, we'll reuse Maya publish types.
@@ -85,6 +86,16 @@ class PerforceActions(HookBaseClass):
                     "description": "Executes Perforce Sync.",
                 }
             )
+
+        if "perforce_depot_path" in actions:
+            action_instances.append(
+                {
+                    "name": "perforce_depot_path",
+                    "params": "Perforce Depot Path 'params'",
+                    "caption": "Perforce: Copy Depot Path",
+                    "description": "Copies the Depot Path to clipboard.",
+                }
+            )                 
 
         return action_instances
 
@@ -114,10 +125,10 @@ class PerforceActions(HookBaseClass):
         :param list actions: Action dictionaries.
         """
         app = self.parent
-        app.log_info("Executing action '%s' on the selection")
+        app.log_info(f"Executing action '{actions}' on the selection")
         # Helps to visually scope selections
         # Execute each action.
-        perforce_entities = []
+        perforce_action_data = []
         perforce_type = None
         for single_action in actions:
             name = single_action["name"]
@@ -130,14 +141,26 @@ class PerforceActions(HookBaseClass):
                 elif perforce_type != sg_publish_data['type']:
                     # We can't run multiple types of entities together
                     raise Exception("Attempting to Perforce sync multiple entity types at once.")
-                perforce_entities.append(sg_publish_data['id'])
+                perforce_action_data.append({"action": name, "data": sg_publish_data['id']})
                 continue
+            if name == "perforce_depot_path":
+                perforce_action_data.append({"action": name, "data": sg_publish_data['sg_p4_depo_path']})
+                continue    
 
             params = single_action["params"]
             HookBaseClass.execute_action(self, name, params, sg_publish_data)
 
         # Call perforce sync
-        if perforce_type and len(perforce_entities):
-            p4_app.sync_files(perforce_type, perforce_entities)
-          
-            
+        if len(perforce_action_data):
+            sync_entities = [x["data"] for x in perforce_action_data if x["action"] == "perforce_sync"]
+            depot_paths = [x["data"] for x in perforce_action_data if x["action"] == "perforce_depot_path"]
+            if len(sync_entities):
+                p4_app.sync_files(perforce_type, sync_entities)
+            if len(depot_paths):
+                clipboard = "\n".join(depot_paths)
+                import tkinter # For Python 2, replace with "import Tkinter as tkinter".
+                tk = tkinter.Tk()
+                tk.withdraw()
+                tk.clipboard_clear()
+                tk.clipboard_append(clipboard)
+                tk.destroy()

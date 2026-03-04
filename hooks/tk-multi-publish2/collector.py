@@ -17,7 +17,9 @@ import re
 
 HookBaseClass = sgtk.get_hook_baseclass()
 TK_FRAMEWORK_PERFORCE_NAME = "tk-framework-perforce_v0.x.x"
-TK_FRAMEWORK_SWC_NAME = "tk-framework-swc_v0.x.x"
+TK_FRAMEWORK_SWC_NAME = "tk-framework-swc_v1.x.x"
+
+logger = sgtk.platform.get_logger(__name__)
 
 # import ptvsd
 
@@ -102,7 +104,7 @@ class BasicSceneCollector(HookBaseClass):
                     "item_priority": 10,
                 },
                 "Houdini Scene": {
-                    "extensions": ["hip", "hipnc"],
+                    "extensions": ["hip", "hipnc", "hiplc"],
                     "icon": self._get_icon_path("houdini.png"),
                     "item_type": "file.houdini",
                     "item_priority": 10,
@@ -174,7 +176,7 @@ class BasicSceneCollector(HookBaseClass):
                     "item_priority": 0,
                 },      
                 "Python Scripts": {
-                    "extensions": ["py", "pyc"],
+                    "extensions": ["py"],
                     "icon": self._get_icon_path("file.png"),
                     "item_type": "script.python",
                     "item_priority": 0,
@@ -204,7 +206,7 @@ class BasicSceneCollector(HookBaseClass):
                     "item_priority": 5,
                 }, 
                 "Ignore": {
-                    "extensions": ["painter_lock", "peak", "bak", "csh"],
+                    "extensions": ["painter_lock", "peak", "bak", "csh", "pyc"],
                     "icon": self._get_icon_path("file.png"),
                     "item_type": "ignore",
                     "item_priority": 0,                    
@@ -272,6 +274,11 @@ class BasicSceneCollector(HookBaseClass):
                     "name": "Mixdown",
                     "item_type": "folder.audio.mixdown",
                     "ignored": True,
+                },          
+                "Python Cache": {
+                    "name": "__pycache__",
+                    "item_type": "folder.python.cache",
+                    "ignored": True,
                 },                                                                             
             }
 
@@ -282,6 +289,7 @@ class BasicSceneCollector(HookBaseClass):
         
         ignored = [
             "autosave",
+            "workspace.mel"
         ]
 
         return ignored
@@ -307,17 +315,117 @@ class BasicSceneCollector(HookBaseClass):
         """
         return {}
 
+    def get_changelist_description(self, changelist):
+        """
+        Fetches the description of the specified Perforce changelist.
+
+        :param changelist: The changelist number as a string or an integer.
+        :return: The description of the changelist.
+        """
+        changelist = str(changelist)
+        try:
+            result = subprocess.check_output(["p4", "describe", "-s", changelist], universal_newlines=True)
+            # The output will contain multiple lines, where the description is present after a line 'Description:'
+            lines = result.split("\n")
+            description = ""
+            capture = False
+            for line in lines:
+                if capture:
+                    description += line.strip() + " "
+                if line.startswith("Description:"):
+                    capture = True
+            return description.strip()
+        except subprocess.CalledProcessError as e:
+            self.logger.error("Failed to fetch description for changelist {}: {}".format(changelist, e))
+            return None
+
+    def get_file_log(self, file_path):
+        try:
+            filelog_list = self.p4_fw.run("filelog", "-l", file_path)
+            # self._log_debug(">>>>>> filelog_list: {}".format(filelog_list))
+            if filelog_list:
+                filelog = filelog_list[0]
+                # 'desc': ['- Climb Idle ']
+                desc = filelog.get("desc", None)
+                if desc:
+                    desc = desc[0]
+                    if desc.startswith("-"):
+                        desc = desc[1:]
+                    if desc.startswith(" "):
+                        desc = desc[1:]
+
+                return desc
+            else:
+                return None
+        except:
+            return None
+
+    def process_current_session_tmp(self, settings, parent_item):
+        """
+        For Desktop Publisher, expects to find a changelist in the parent App to process,
+        originally passed in when invoking the Publish... engine command.
+
+        :param dict settings: Configured settings for this collector
+        :param parent_item: Root item instance
+        """
+
+        self.p4_fw = self.load_framework(TK_FRAMEWORK_PERFORCE_NAME)
+        self.logger.debug("Perforce framework loaded.")
+
+        if self.parent.changelist:
+            try:
+                self.logger.debug(f"Found change {self.parent.changelist} for processing.")
+                changes = self.p4_fw.util.reconcile_files(change=self.parent.changelist)
+                self.logger.debug(f"Found opened files: \n {changes}")
+
+                """
+                # Fetch changelist description from Perforce
+                desc = self.get_file_log(changes[0].get("clientFile", None))
+                self.logger.debug("Changelist Description: " + desc)
+                changelist_description = self.get_changelist_description(self.parent.changelist)
+                """
+                changelist_description = "testing"
+                if changelist_description:
+                    self.logger.debug("Changelist Description: " + changelist_description)
+
+                    # Use the changelist description as the summary for the ShotGrid publisher
+                    for item in changes:
+                        #if item.properties.type == "publish":  # Or check the appropriate condition to identify publishable items
+                        item.description = changelist_description
+
+                self._collect_folder(parent_item, changes)
+                return None
+            except Exception as e:
+                self.logger.debug(f"Error: {e}")
+        else:
+            pass
+
+
     def process_current_session(self, settings, parent_item):
         """
-        Analyzes the current scene open in a DCC and parents a subtree of items
-        under the parent_item passed in.
+        For Desktop Publisher, expects to find a changelist in the parent App to process,
+        originally passed in when invoking the Publish... engine command.
 
         :param dict settings: Configured settings for this collector
         :param parent_item: Root item instance
         """
 
         # default implementation does not do anything
-        pass
+        self.p4_fw = self.load_framework(TK_FRAMEWORK_PERFORCE_NAME)
+        self.logger.debug("Perforce framework loaded.")            
+        
+        if self.parent.changelist:
+            try:                
+                self.logger.debug(f"Found change {self.parent.changelist} for processing.")
+                changes = self.p4_fw.util.reconcile_files(change=self.parent.changelist)
+                self.logger.debug(f"Found opened files: \n {changes}")
+                self._collect_folder(parent_item, changes)
+                return None                
+            except Exception as e:
+                self.logger.debug(f"Error: {e}")    
+        else:
+            pass
+
 
     def process_file(self, settings, parent_item, path, custom_info=None):
         """
@@ -355,10 +463,12 @@ class BasicSceneCollector(HookBaseClass):
                             if custom_info:
                                 item_info.update(custom_info)
                             collectedFile = self._collect_file(parent_item, item_info)
+                            logger.debug("collectedFile: {}".format(collectedFile))
                             if not collectedFile:
                                 return None
 
                             reviews = os.path.join(os.path.dirname(path),"review")
+                            logger.debug("reviews: {}".format(reviews))
                             if(os.path.exists(reviews)):
                                 file.scan(reviews)
                                 self._collect_folder(parent_item, file)
@@ -380,7 +490,7 @@ class BasicSceneCollector(HookBaseClass):
         :returns: The item that was created
         """
 
-        if item_info["item_type"].startswith("script") or item_info["item_type"] == "ignore":
+        if item_info["item_type"] == "ignore":
             return None
 
         for subStr in self.ignored_filename_strings:
@@ -419,24 +529,19 @@ class BasicSceneCollector(HookBaseClass):
 
         display_name = publisher.util.get_publish_name(path, sequence=is_sequence)
 
-        # Try to get the context more specifically from the path on disk
         context = None
-        try:
-            context = self.swc_fw.find_task_context(path)
-        except(AttributeError):
-            try:
-                self.swc_fw = self.load_framework(TK_FRAMEWORK_SWC_NAME)
-                context = self.swc_fw.find_task_context(path)
-            except:
-                # This probably isn't a valid folder
-                pass
-        except:
-            pass
+        # Try to get the context more specifically from the path on disk
+        swc_fw = self.load_framework(TK_FRAMEWORK_SWC_NAME)
+        swc_context_utils = swc_fw.import_module("Context_Utils")
+        context = swc_context_utils.find_task_context(path)
 
         # create and populate the item
         file_item = parent_item.create_item(item_type, type_display, display_name)
         file_item.set_icon_from_path(item_info["icon_path"])
         file_item.context_change_allowed = True
+
+        # Set description for the item
+        # file_item.description = "testing"
 
         # If we found a better context, set it here
         if context:
@@ -452,7 +557,7 @@ class BasicSceneCollector(HookBaseClass):
             file_item.thumbnail_explicit = True
         # if the supplied path is a SpeedTree SPM file, extract the thumbnail.
         elif item_type.startswith("file.speedtree") and extension.startswith("spm"):
-            swc = self.load_framework("tk-framework-swc_v0.x.x")
+            swc = self.load_framework("tk-framework-swc_v1.x.x")
             spm_utils = swc.import_module("SPM_Utils")
             temp_path = os.path.expandvars(r'%APPDATA%\Shotgun\Temp')
             os.makedirs(temp_path, exist_ok=True)
