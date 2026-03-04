@@ -57,9 +57,13 @@ class BeforeAppLaunch(HookBaseClass):
         # os.environ["MY_SETTING"] = "foo bar"
 
         # Append to PYTHONPATH
-    
-        app_tools_path = software_entity["sg_windows_tools_path"]
+        if software_entity:
+            app_tools_path = software_entity["sg_windows_tools_path"]
+        else:
+            app_tools_path = None
+
         project_tools_path = self.parent.shotgun.find_one("Project", [["id", "is", self.parent.context.project.get("id")]], ["sg_tool_root"]).get("sg_tool_root")
+        
         if app_tools_path:
             if project_tools_path:
                 tool_root = project_tools_path
