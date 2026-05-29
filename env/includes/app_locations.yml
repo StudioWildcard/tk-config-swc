@@ -35,7 +35,7 @@ apps.tk-multi-demo.location:
 apps.tk-multi-launchapp.location:
   type: app_store
   name: tk-multi-launchapp
-  version: v0.13.5
+  version: v0.14.2
 
 # loader2
 apps.tk-multi-loader2.location:
@@ -53,15 +53,18 @@ apps.tk-multi-loader2.location:
   type: git_branch
   branch: swc_main_ai
   path: https://github.com/studiowildcard/tk-multi-loader2.git
-  version: cc83e0ac195765418a5f3f529fd727a1f6f84cee
+  # FPT 3.0 / Py3.13 (2026-05-28): advanced to swc_main_ai HEAD which merged upstream v1.25.6
+  # (VFX CY2026 / Py3.13 / Qt6.8) while keeping SWC show-in-FS / Task-paths customizations.
+  version: c924a3017d216aff6c2b79bb59cfa86700a0e88d
 
 apps.tk-swc-perforce-sync.location:
   #type: dev
   #path: S:\Projects\ShotgunConfig\tk-swc-perforce-sync
+  # FPT 3.0 go-live 2026-05-29: dev -> live on sg_ark1_fpt3 (FPT3 fixes; child-exclusion WIP held back on swc_main_ai)
   type: git_branch
-  branch: swc_main_ai
+  branch: sg_ark1_fpt3
   path: https://github.com/StudioWildcard/tk-swc-perforce-sync
-  version: 768cf154bb0b6fe83d0ebbc0e83142873d7aeeb4
+  version: b2ee51c94ffe10c2a63363dd5b762d19e079bc8f
 
 # publish2
 apps.tk-multi-publish2.location:
@@ -73,13 +76,15 @@ apps.tk-multi-publish2.location:
   type: git_branch
   branch: beta-ai
   path: https://github.com/StudioWildcard/tk-multi-publish2
-  version: 413e03ee3dbfd97542d555a78556ae8817141c3a
+  # FPT 3.0 / Py3.13 (2026-05-28): advanced to beta-ai HEAD which merged upstream v2.10.8
+  # (Py2/PySide-Qt4 cleanup, Py3.13/Qt6.8) while keeping SWC P4SG/changelist/Unreal-publish work.
+  version: 4cf4587440357ddc04784c3d66f55a12f51c973e
 
 # screeningroom
 apps.tk-multi-screeningroom.location:
   type: app_store
   name: tk-multi-screeningroom
-  version: v0.6.0
+  version: v0.6.3
 
 # pythonconsole
 apps.tk-multi-pythonconsole.location:
@@ -104,16 +109,17 @@ apps.tk-multi-shotgunpanel.location:
   #branch: master
   #path: https://github.com/StudioWildcard/tk-multi-shotgunpanel
   #version: cd1bdbf7703ebd7f0025471182c7c466660904b7
+  # FPT 3.0 go-live 2026-05-29: dev -> live (already Py3.13/Qt6-clean at swc_main_aei HEAD)
   type: git_branch
   branch: swc_main_aei
   path: https://github.com/StudioWildcard/tk-multi-shotgunpanel
-  version: c2c3e0730f27c19ef7704245a1055ade2ade927c
+  version: b242fdc7cb5a39b2290c8e6ff6bc2db33ea71ba6
 
 # dev utils
 apps.tk-multi-devutils.location:
   type: app_store
   name: tk-multi-devutils
-  version: v1.3.1
+  version: v1.3.3
 
 # ---- Houdini apps
 
@@ -163,7 +169,9 @@ apps.tk-shotgun-folders.location:
   type: git_branch
   branch: swc_main_flow
   path: https://github.com/studiowildcard/tk-shotgun-folders.git
-  version: e79db5f432e08d8d0bc6db1b5c89b03b62c0fba3
+  # FPT 3.0 / Py3.13 (2026-05-28): advanced to swc_main_flow HEAD (merged upstream v0.4.1,
+  # keeps SWC unregister-folders command). App has no Qt/six, already Py3.13-clean.
+  version: 1431e9a9f307e536d495803aee6084bba5c0035f
   # ### Dev
   # type: dev
   # path: S:/Projects/ShotgunConfig/tk-shotgun-folders
@@ -177,7 +185,9 @@ apps.tk-multi-workfiles2.location:
   type: git_branch
   branch: swc_main_flow
   path: https://github.com/studiowildcard/tk-multi-workfiles2.git
-  version: 2898ad4ebadb2c524ed08ccdcb29644f59726903
+  # FPT 3.0 / Py3.13 (2026-05-28): advanced to swc_main_flow HEAD which merged upstream's
+  # CY2026/Py3.13/Qt6.8 (PR #168) while keeping SWC tk-framework-swc + task-context filtering.
+  version: e85792ed6e1efdb052a405d47453fb33e1202d8b
   # ### Dev
   # type: dev
   # path: S:/Projects/ShotgunConfig/tk-multi-workfiles2
@@ -199,10 +209,11 @@ apps.tk-multi-perforce.location:
   #branch: swc_main_ai
   #path: https://github.com/StudioWildcard/tk-multi-perforce
   #version: 0eab96f36c5b789ee328d1dc8042a46419b805fb
+  # FPT 3.0 go-live 2026-05-29: dev -> live (re.template + Qt6 UnicodeUTF8 fixes)
   type: git_branch
   branch: tester
   path: https://github.com/StudioWildcard/tk-multi-perforce
-  version: d36015967fb4ee9faa79d84856a6da3e865e9c48
+  version: c044fd0c835f04158d596241005e7ce8e579568c
 
 ################################################################################
 # reference all of the common frameworks
@@ -211,7 +222,7 @@ frameworks: '@frameworks'
 apps.tk-shotgun-launchfolder.location:
   type: app_store
   name: tk-shotgun-launchfolder
-  version: v0.4.0
+  version: v0.4.1
 
 # Copy from Playlist
 apps.tk-copyfromplaylist.location:
@@ -255,7 +266,9 @@ engines.tk-unreal.location:
   type: git_branch
   branch: swc_main_aei
   path: https://github.com/StudioWildcard/tk-unreal
-  version: 2358068714b1bc8a970e244640ac12b0dc9a8249
+  # FPT 3.0 / Py3.13 (2026-05-28): advanced to swc_main_aei HEAD which merged upstream v1.3.1
+  # (UE5.4 / PySide6 / Qt-import fixes) while keeping the SWC launch-params override.
+  version: f9a4fcb55dcd8f014cb3d1ba40fd988eda8bc251
 
 
 

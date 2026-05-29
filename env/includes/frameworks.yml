@@ -21,19 +21,19 @@ frameworks:
     location:
       type: app_store
       name: tk-framework-adobe
-      version: v1.2.11
+      version: v1.2.12
   # adminui - provides GUIs for administrative commands
   tk-framework-adminui_v0.x.x:
     location:
       type: app_store
       name: tk-framework-adminui
-      version: v0.8.0
+      version: v0.8.3
   # desktopserver - provides a server to run local commands.
   tk-framework-desktopserver_v1.x.x:
     location:
       type: app_store
       name: tk-framework-desktopserver
-      version: v1.8.3
+      version: v1.8.7
   # qtwidgets - collection of Toolkit related QT Widgets
   tk-framework-qtwidgets_v2.x.x:
     location:
@@ -45,10 +45,11 @@ frameworks:
       #type: git
       #path: https://github.com/StudioWildcard/tk-framework-qtwidgets.git
       #version: v2.110.7
+      # FPT 3.0 go-live 2026-05-29: dev -> live (Qt6 UnicodeUTF8 fix in context_selector)
       type: git_branch
       branch: swc_main_aei
       path: https://github.com/StudioWildcard/tk-framework-qtwidgets
-      version: 095c2899ecf2c90b167fa33d4ab862a4eeb9d737
+      version: 900a657efd105179f516ff8aeeef464794b0695a
   # shotgunutils v4 - Shotgun Related Utilities
   tk-framework-shotgunutils_v4.x.x:
     location:
@@ -63,15 +64,16 @@ frameworks:
       #path: "S:/Projects/ShotgunConfig/tk-framework-shotgunutils"
       type: app_store
       name: tk-framework-shotgunutils
-      version: v5.10.3
+      version: v5.11.2
   tk-swc-framework-shotgunutils_v5.x.x:
     location:
       #type: dev
       #path: "S:/Projects/ShotgunConfig/tk-swc-framework-shotgunutils"
+      # FPT 3.0 go-live 2026-05-29: dev -> live (imp->importlib fix)
       type: git_branch
       branch: swc_main_ai
       path: https://github.com/StudioWildcard/tk-swc-framework-shotgunutils
-      version: 400c0064cd9c184b081a1180bedae83463dca974
+      version: 82bc86fb6e64ac8496832deb31d1016197097004
   # widget v0 - QT Widget Framework for Tank Apps (qtwidgets fw predecessor)
   tk-framework-widget_v0.2.x:
     location:
@@ -84,13 +86,13 @@ frameworks:
     location:
       type: app_store
       name: tk-framework-widget
-      version: v1.2.1
+      version: v1.2.2
   # desktopclient - A client for Shotgun Create
   tk-framework-desktopclient_v0.x.x:
     location:
       type: app_store
       name: tk-framework-desktopclient
-      version: v0.4.0
+      version: v0.4.3
   # lmv - provides LMV conversion tools
   tk-framework-lmv_v1.x.x:
     location:
@@ -123,10 +125,11 @@ frameworks:
       #branch: swc_beta_rb_ai
       #path: https://gitlab.com/nexodus/consulting/swc/tk-framework-perforce.git
       #version: b51cd173972d7172bafa4bb20797b429a5acc87a
+      # FPT 3.0 go-live 2026-05-29: dev -> live (P4Python 3.13 binary, SSO ticket-reuse, six/Qt6 fixes)
       type: git_branch
       branch: main
       path: https://github.com/StudioWildcard/tk-framework-perforce-swc
-      version: b94b5fe84f8845cabbd3b90551d821bd7a47fdc9
+      version: 7a28af2e60b5d5953271b86b240cb8840dc1be82
 
   # # Unreal Launcher
   # tk-framework-unreal-launcher_v0.x.x:
@@ -154,6 +157,7 @@ frameworks:
       # version: 1a5e999
       # type: git_branch
       # branch: main
+      # FPT 3.0 go-live 2026-05-29: dev -> live (unchanged; already Py3.13-clean)
       type: git
       path: https://github.com/StudioWildcard/tk-framework-swc
       version: v1.4.5

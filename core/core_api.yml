@@ -1,10 +1,15 @@
 # Flow Production Tracking Toolkit configuration file. This file was automatically
 # created during the latest core update.
 location:
-  # name: tk-core
-  # type: app_store
-  # version: v0.22.0
-  type: git_branch
-  branch: swc_main
-  path: https://github.com/StudioWildcard/tk-core
-  version: 96ffe3c2
+  # FPT 3.0 / Python 3.13 migration (2026-05-28): re-pinned from the StudioWildcard/tk-core
+  # swc_main fork (@96ffe3c2), whose bundled shotgun_api3 did `from .lib.six.moves import ...`
+  # and crashed on Python 3.13 (six 1.13.0 six.moves loader removed in py3.12+). Moved to the
+  # Autodesk app_store FPT-3.0 line (matches tk-config-default2 v1.7.7). The fork carried no
+  # production customizations (test-fixture YAML only), so it was dropped.
+  # type: git_branch
+  # branch: swc_main
+  # path: https://github.com/StudioWildcard/tk-core
+  # version: 96ffe3c2
+  name: tk-core
+  type: app_store
+  version: v0.23.8

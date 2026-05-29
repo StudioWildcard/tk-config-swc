@@ -19,7 +19,7 @@
 engines.tk-3dsmax.location:
   type: app_store
   name: tk-3dsmax
-  version: v1.4.5
+  version: v1.4.8
 
 # Desktop
 engines.tk-desktop.location:
@@ -30,10 +30,13 @@ engines.tk-desktop.location:
   # type: app_store
   # name: tk-desktop
   # version: v2.6.0
+  # FPT 3.0 / Python 3.13 (2026-05-28): advanced from stale 262853b3 (distutils import crashed
+  # on Py3.13) to swc_main_aei HEAD, which merged upstream's FPT-3.0 line (Py2/imp/distutils
+  # removal) while keeping the SWC perforce + version-check desktop banners.
   type: git_branch
   branch: swc_main_aei
   path: https://github.com/StudioWildcard/tk-desktop
-  version: 262853b3b2e44b4574e2d9fad996a9a14a715d40
+  version: c2f694b7792d24d8ae4b07d1cf0e6756242ca810
 
 
 
@@ -41,37 +44,37 @@ engines.tk-desktop.location:
 engines.tk-desktop2.location:
   type: app_store
   name: tk-desktop2
-  version: v1.6.1
+  version: v1.6.2
 
 # Houdini
 engines.tk-houdini.location:
   type: app_store
   name: tk-houdini
-  version: v1.9.7
+  version: v1.9.12
 
 # Maya
 engines.tk-maya.location:
   type: app_store
   name: tk-maya
-  version: v0.13.7
+  version: v0.13.11
 
 # Photoshop
 engines.tk-photoshopcc.location:
   type: app_store
   name: tk-photoshopcc
-  version: v1.11.9
+  version: v1.12.2
 
 # Shell
 engines.tk-shell.location:
   type: app_store
   name: tk-shell
-  version: v0.10.2
+  version: v0.10.3
 
 # Shotgun
 engines.tk-shotgun.location:
   type: app_store
   name: tk-shotgun
-  version: v0.11.1
+  version: v0.11.4
 
 # ---- 3rd Party Engines
 
