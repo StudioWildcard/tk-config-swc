@@ -3,6 +3,10 @@
 Studio Wildcard's ShotGrid (Shotgun) Toolkit pipeline configuration for Ark game development.
 Perforce-integrated, Unreal Engine-centric game asset pipeline.
 
+> **New here / on a fresh machine?** This config is one of several repos that make up the ARK pipeline.
+> See **`WORKSPACE.md`** (next to this file) for how the whole multi-repo workspace fits together and how to
+> bootstrap it (clone the sibling repos, FPT 3.0 / Python 3.13 setup, dev↔live modes) starting from just this repo.
+
 ## Architecture
 
 - **Environment-driven**: 32+ env YAML files in `env/`, selected at runtime by `core/hooks/pick_environment.py`
